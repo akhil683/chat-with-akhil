@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ArrowUp, Bot, User } from "lucide-react"
+import { ArrowUp, Bot, Github, Link, Twitter, User } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Textarea } from "./ui/textarea"
 import Image from "next/image"
@@ -17,15 +17,59 @@ export default function ModalChat() {
       handleSubmit();
     }
   };
+  // const sendMessage = async () => {
+  //   if (!input) return;
+  //   const newMessage = { role: "user", content: input };
+  //   setMessages([...messages, newMessage]);
+  //
+  //   const res = await fetch("/api/chat", {
+  //     method: "POST",
+  //     body: JSON.stringify({ prompt: input }),
+  //   });
+  //   const reader = res.body?.getReader();
+  //   const decoder = new TextDecoder();
+  //   let aiResponse = "";
+  //
+  //   if (reader) {
+  //     while (true) {
+  //       const { done, value } = await reader.read();
+  //       if (done) break;
+  //       aiResponse += decoder.decode(value, { stream: true });
+  //       setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }]);
+  //     }
+  //   }
+  //   setInput("");
+  // };
 
   return (
-    <div className="flex min-h-screen flex-col w-full p-4">
-      <div className="flex-1 justify-center items-center flex overflow-y-auto p-4 h-full">
+    <div className="flex min-h-screen flex-col p-4 max-w-3xl mx-auto">
+      <div className="flex-1 justify-center flex flex-col gap-2 overflow-y-auto p-4 h-full">
         {messages.length < 1 && (
           <div className="h-full flex justify-center items-center w-full">
             <div className="flex flex-col justify-center items-center gap-2">
-              <Image src="https://avatars.githubusercontent.com/u/71344171?v=4" width={300} height={300} className="h-28 md:36 w-28 md:w-36 rounded-full" alt="Logo" />
-              <p className="max-md:text-sm text-gray-300">Start talking to Andromeda AI</p>
+              <Image
+                src="https://avatars.githubusercontent.com/oa/2827716?s=140&u=3f51c827df36248b4e060a0abfb7662f8bd2cd8d&v=4"
+                width={300}
+                height={300}
+                className="max-h-24 max-w-24 rounded-full border" alt="Logo"
+              />
+              <p className="md:text-lg text-white text-center">
+                Wanna know about Akhil? <br />
+                <span className="text-sm text-gray-300">
+                  Start talking to Andromeda AI
+                </span>
+              </p>
+              <div className="flex justify-center items-center gap-2 mt-4">
+                <a href="https://github.com/akhil683" target="_blank">
+                  <Github className="w-8 h-8 p-1 rounded-full bg-gray-300 hover:bg-gray-100 duration-200 text-gray-900" />
+                </a>
+                <a href="https://x.com/akkhil_dev" target="_blank">
+                  <Twitter className="w-8 h-8 p-1 rounded-full bg-gray-300 hover:bg-gray-100 duration-200 text-gray-900" />
+                </a>
+                <a href="https://akkhil.dev" target="_blank">
+                  <Link className="w-8 h-8 p-1 rounded-full bg-gray-300 hover:bg-gray-100 duration-200 text-gray-900" />
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -99,13 +143,13 @@ export default function ModalChat() {
         )}
       </div>
 
-      <div className="border border-gray-500 bg-[#222] md:p-4 p-3 rounded-2xl">
+      <div className="fixed max-w-3xl mx-auto bottom-2 left-0 right-0 shadow-xl shadow-black border border-gray-500 bg-[#222] md:p-4 p-3 rounded-2xl">
         <form onSubmit={handleSubmit} className="flex items-end space-x-2 overflow-hidden">
           <Textarea
             value={input}
             onChange={handleInputChange}
             placeholder="Ask Andomeda..."
-            className="flex-1 border-none shadow-none focus-visible:ring-transparent resize-none md:text-xl"
+            className="flex-1 border-none shadow-none focus-visible:ring-transparent resize-none text-gray-200 md:text-lg"
             onKeyDown={handleKeyPress}
             disabled={isLoading}
           />
