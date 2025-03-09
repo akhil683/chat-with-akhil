@@ -1,5 +1,9 @@
+import ModalChat from "@/components/ChatBox";
+
 export default function Home() {
   return (
-    <div>Hello</div>
+    <section>
+      <ModalChat />
+    </section>
   );
 }
