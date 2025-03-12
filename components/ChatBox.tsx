@@ -18,7 +18,7 @@ export default function ModalChat() {
     }
   };
   return (
-    <div className="flex min-h-screen flex-col p-4 max-w-3xl mx-auto">
+    <div className="flex min-h-screen flex-col relative p-4 max-w-3xl mx-auto">
 
       <div className="flex-1 justify-center flex flex-col gap-2 overflow-y-auto p-4 h-full">
         {messages.length < 1 && (
@@ -137,7 +137,7 @@ export default function ModalChat() {
         </form>
       </div>
 
-      <div className="fixed max-w-3xl mx-auto bottom-2 left-0 right-0 shadow-xl shadow-black border border-[#555] bg-[#222] md:p-4 p-3 rounded-2xl">
+      <div className="fixed max-w-3xl mx-auto bottom-2 left-2 right-2 shadow-xl shadow-black border border-[#555] bg-[#222] md:p-4 p-3 rounded-2xl mx-6">
         <form onSubmit={handleSubmit} className="flex items-end space-x-2 overflow-hidden">
           <Textarea
             value={input}
