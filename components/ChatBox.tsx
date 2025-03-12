@@ -17,30 +17,6 @@ export default function ModalChat() {
       handleSubmit();
     }
   };
-  // const sendMessage = async () => {
-  //   if (!input) return;
-  //   const newMessage = { role: "user", content: input };
-  //   setMessages([...messages, newMessage]);
-  //
-  //   const res = await fetch("/api/chat", {
-  //     method: "POST",
-  //     body: JSON.stringify({ prompt: input }),
-  //   });
-  //   const reader = res.body?.getReader();
-  //   const decoder = new TextDecoder();
-  //   let aiResponse = "";
-  //
-  //   if (reader) {
-  //     while (true) {
-  //       const { done, value } = await reader.read();
-  //       if (done) break;
-  //       aiResponse += decoder.decode(value, { stream: true });
-  //       setMessages((prev) => [...prev, { role: "assistant", content: aiResponse }]);
-  //     }
-  //   }
-  //   setInput("");
-  // };
-
   return (
     <div className="flex min-h-screen flex-col p-4 max-w-3xl mx-auto">
       <div className="flex-1 justify-center flex flex-col gap-2 overflow-y-auto p-4 h-full">
@@ -143,6 +119,22 @@ export default function ModalChat() {
         )}
       </div>
 
+      <div className="max-w-3xl mx-auto opacity-0 shadow-xl shadow-black border border-gray-500 bg-[#222] md:p-4 p-3 rounded-2xl">
+        <form onSubmit={handleSubmit} className="flex items-end space-x-2 overflow-hidden">
+          <Textarea
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Ask Andomeda..."
+            className="flex-1 border-none shadow-none focus-visible:ring-transparent resize-none text-gray-200 md:text-lg"
+            onKeyDown={handleKeyPress}
+            disabled={isLoading}
+          />
+          <Button type="submit" size="icon" disabled={isLoading} className="rounded-xl">
+            <ArrowUp className="h-4 w-4" />
+            <span className="sr-only">Send message</span>
+          </Button>
+        </form>
+      </div>
       <div className="fixed max-w-3xl mx-auto bottom-2 left-0 right-0 shadow-xl shadow-black border border-gray-500 bg-[#222] md:p-4 p-3 rounded-2xl">
         <form onSubmit={handleSubmit} className="flex items-end space-x-2 overflow-hidden">
           <Textarea
