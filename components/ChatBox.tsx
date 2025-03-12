@@ -3,7 +3,7 @@
 import { useChat } from "@ai-sdk/react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ArrowUp, Bot, Github, Link, Twitter, User } from "lucide-react"
+import { ArrowUp, Bot, Github, Link, MessageCircle, Twitter, User } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Textarea } from "./ui/textarea"
 import Image from "next/image"
@@ -19,6 +19,7 @@ export default function ModalChat() {
   };
   return (
     <div className="flex min-h-screen flex-col p-4 max-w-3xl mx-auto">
+
       <div className="flex-1 justify-center flex flex-col gap-2 overflow-y-auto p-4 h-full">
         {messages.length < 1 && (
           <div className="h-full flex justify-center items-center w-full">
@@ -135,7 +136,8 @@ export default function ModalChat() {
           </Button>
         </form>
       </div>
-      <div className="fixed max-w-3xl mx-auto bottom-2 left-0 right-0 shadow-xl shadow-black border border-gray-500 bg-[#222] md:p-4 p-3 rounded-2xl">
+
+      <div className="fixed max-w-3xl mx-auto bottom-2 left-0 right-0 shadow-xl shadow-black border border-[#555] bg-[#222] md:p-4 p-3 rounded-2xl">
         <form onSubmit={handleSubmit} className="flex items-end space-x-2 overflow-hidden">
           <Textarea
             value={input}
